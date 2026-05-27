@@ -1,6 +1,7 @@
 # SENTINEL
 
 **Multi-channel sensor anomaly workbench with AI-driven decision support.**
+**Live demo:** [sentinel-one-sigma.vercel.app](https://sentinel-one-sigma.vercel.app/)
 
 A frontend-heavy reference application for the kind of internal tooling a reliability engineer might actually live in: a dense time-series dashboard that flags statistical anomalies on rotating-equipment telemetry, then synthesizes a structured decision brief — severity, ranked hypotheses, recommended actions — by handing the window's stats and detected events to a language model under a strict JSON contract.
 

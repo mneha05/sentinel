@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 360" font-family="ui-monospace, 'IBM Plex Mono', monospace">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9aa0aa"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="880" height="360" fill="#0A0B0D"/>
+
+  <!-- Subtle grid -->
+  <g stroke="#1c1f25" stroke-width="1">
+    <path d="M0 60 H880" /><path d="M0 120 H880" /><path d="M0 180 H880" /><path d="M0 240 H880" /><path d="M0 300 H880" />
+  </g>
+
+  <!-- Title -->
+  <text x="32" y="40" fill="#E6E8EB" font-size="13" letter-spacing="3">SENTINEL · ARCHITECTURE</text>
+  <text x="32" y="56" fill="#6B7280" font-size="10" letter-spacing="2">REQUEST FLOW</text>
+
+  <!-- Client box -->
+  <g>
+    <rect x="32" y="90" width="220" height="220" fill="#111317" stroke="#2A2F37"/>
+    <text x="44" y="112" fill="#A0A6AF" font-size="10" letter-spacing="2">CLIENT · BROWSER</text>
+    <line x1="32" y1="124" x2="252" y2="124" stroke="#2A2F37"/>
+
+    <text x="44" y="146" fill="#E6E8EB" font-size="11">Dashboard.tsx</text>
+    <text x="44" y="166" fill="#7DD3FC" font-size="10">  detectAnomalies()</text>
+    <text x="44" y="182" fill="#A0A6AF" font-size="10">  ↳ MAD-based robust z-score</text>
+    <text x="44" y="198" fill="#A0A6AF" font-size="10">  ↳ composite-event linking</text>
+
+    <text x="44" y="226" fill="#E6E8EB" font-size="11">ChannelChart × 4</text>
+    <text x="44" y="246" fill="#A0A6AF" font-size="10">  hand-rolled SVG · crosshair</text>
+
+    <text x="44" y="270" fill="#E6E8EB" font-size="11">AnalysisPanel</text>
+    <text x="44" y="290" fill="#A0A6AF" font-size="10">  fetch /api/analyze</text>
+  </g>
+
+  <!-- Arrow client -> api -->
+  <line x1="252" y1="280" x2="340" y2="280" stroke="#9aa0aa" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <text x="262" y="270" fill="#FBBF24" font-size="10">POST JSON</text>
+
+  <!-- API route box -->
+  <g>
+    <rect x="340" y="220" width="220" height="100" fill="#111317" stroke="#2A2F37"/>
+    <text x="352" y="240" fill="#A0A6AF" font-size="10" letter-spacing="2">SERVER · ROUTE HANDLER</text>
+    <line x1="340" y1="252" x2="560" y2="252" stroke="#2A2F37"/>
+    <text x="352" y="272" fill="#E6E8EB" font-size="11">/api/analyze</text>
+    <text x="352" y="290" fill="#A0A6AF" font-size="10">  build prompt · validate schema</text>
+    <text x="352" y="306" fill="#A0A6AF" font-size="10">  fallback to mock if no key</text>
+  </g>
+
+  <!-- Arrow api -> anthropic -->
+  <line x1="560" y1="270" x2="640" y2="270" stroke="#9aa0aa" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <text x="568" y="260" fill="#FBBF24" font-size="10">SDK</text>
+
+  <!-- Anthropic API box -->
+  <g>
+    <rect x="640" y="220" width="200" height="100" fill="#111317" stroke="#2A2F37"/>
+    <text x="652" y="240" fill="#A0A6AF" font-size="10" letter-spacing="2">EXTERNAL</text>
+    <line x1="640" y1="252" x2="840" y2="252" stroke="#2A2F37"/>
+    <text x="652" y="272" fill="#E6E8EB" font-size="11">Anthropic API</text>
+    <text x="652" y="290" fill="#A0A6AF" font-size="10">  claude-sonnet-4-5</text>
+    <text x="652" y="306" fill="#A0A6AF" font-size="10">  strict JSON output</text>
+  </g>
+
+  <!-- Static data box -->
+  <g>
+    <rect x="340" y="90" width="220" height="80" fill="#111317" stroke="#2A2F37"/>
+    <text x="352" y="110" fill="#A0A6AF" font-size="10" letter-spacing="2">STATIC</text>
+    <line x1="340" y1="122" x2="560" y2="122" stroke="#2A2F37"/>
+    <text x="352" y="142" fill="#E6E8EB" font-size="11">turbine-24h.json</text>
+    <text x="352" y="158" fill="#A0A6AF" font-size="10">  4 channels × 1440 samples</text>
+  </g>
+  <line x1="252" y1="170" x2="340" y2="135" stroke="#9aa0aa" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <text x="262" y="150" fill="#FBBF24" font-size="10">load on RSC</text>
+
+  <!-- Footer -->
+  <text x="32" y="340" fill="#6B7280" font-size="10">stack · next.js 14 app router · typescript · tailwind · anthropic sdk · zero chart libs</text>
+</svg>

@@ -1,0 +1,126 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Serif:ital,wght@1,300&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: "IBM Plex Sans", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --font-serif: "IBM Plex Serif", Georgia, serif;
+
+  /* Surfaces — graphite, slight blue cast */
+  --bg:       #0A0B0D;
+  --panel:    #111317;
+  --panel-2:  #15181D;
+  --line:     #20242A;
+  --line-2:   #2A2F37;
+
+  /* Type */
+  --text:     #E6E8EB;
+  --text-dim: #A0A6AF;
+  --text-mute:#6B7280;
+
+  /* Signal palette — desaturated, instrument-grade */
+  --cyan:     #7DD3FC;
+  --violet:   #C4B5FD;
+  --mint:     #86EFAC;
+  --amber:    #FBBF24;
+  --crimson:  #F87171;
+
+  /* Status accent — single hot color for anomalies */
+  --hot:      #FF5C5C;
+  --hot-glow: rgba(255, 92, 92, 0.18);
+}
+
+html, body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "ss02", "tnum" 1, "cv11" 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Tabular numerals everywhere by default */
+.tnum { font-variant-numeric: tabular-nums; }
+
+/* Subtle grid texture for the page background */
+body {
+  background-image:
+    linear-gradient(to bottom, rgba(255,255,255,0.012) 1px, transparent 1px),
+    linear-gradient(to right,  rgba(255,255,255,0.012) 1px, transparent 1px);
+  background-size: 48px 48px;
+  background-position: -1px -1px;
+}
+
+/* Scrollbar — narrow, monochrome */
+*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar-thumb {
+  background: var(--line-2);
+  border-radius: 0;
+  border: 2px solid var(--bg);
+}
+*::-webkit-scrollbar-thumb:hover { background: #3a3f48; }
+
+/* A thin focus ring */
+:focus-visible {
+  outline: 1px solid var(--amber);
+  outline-offset: 2px;
+}
+
+/* Used for the corner brackets on panels (instrument frame look) */
+.bracket-tl, .bracket-tr, .bracket-bl, .bracket-br {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-color: var(--line-2);
+  pointer-events: none;
+}
+.bracket-tl { top: -1px; left: -1px;  border-top: 1px solid; border-left: 1px solid; }
+.bracket-tr { top: -1px; right: -1px; border-top: 1px solid; border-right: 1px solid; }
+.bracket-bl { bottom: -1px; left: -1px;  border-bottom: 1px solid; border-left: 1px solid; }
+.bracket-br { bottom: -1px; right: -1px; border-bottom: 1px solid; border-right: 1px solid; }
+
+/* Pulse on a fresh anomaly */
+@keyframes hot-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 var(--hot-glow); }
+  50%      { box-shadow: 0 0 0 6px transparent; }
+}
+.pulse-hot { animation: hot-pulse 1.8s ease-in-out infinite; }
+
+/* Loading dots */
+@keyframes blink {
+  0%, 80%, 100% { opacity: 0.2; }
+  40%           { opacity: 1; }
+}
+.dot { animation: blink 1.2s infinite both; }
+.dot:nth-child(2) { animation-delay: 0.15s; }
+.dot:nth-child(3) { animation-delay: 0.30s; }
+
+/* Severity chips */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 8px;
+  border: 1px solid var(--line-2);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  background: var(--panel-2);
+}
+.chip-hot     { color: var(--hot);    border-color: rgba(255,92,92,0.35); background: rgba(255,92,92,0.06); }
+.chip-warn    { color: var(--amber);  border-color: rgba(251,191,36,0.35); background: rgba(251,191,36,0.06); }
+.chip-info    { color: var(--cyan);   border-color: rgba(125,211,252,0.30); background: rgba(125,211,252,0.05); }
+
+/* Section label — small caps mono */
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+}
